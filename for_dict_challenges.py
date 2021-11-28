@@ -12,7 +12,18 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+def calculation(students):
+    students_list = {}
+    for student in students:
+        if student['first_name'] in students_list:
+            students_list[student['first_name']] += 1
+        else:
+            students_list[student['first_name']] = 1
+    return students_list
+students_list_1 = calculation(students)
+for name in students_list_1:
+    print(f'{name}: {students_list_1[name]}')
+    
 
 
 # Задание 2
@@ -26,7 +37,19 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+def most_popular_name(students):
+    students_list_2 = calculation(students)
+    amount = 0
+    most_popular = ''
+    for name in students_list_2:
+        if students_list_2[name] > amount:
+            most_popular = name
+            amount = students_list_2[name]
+    return most_popular
+name = most_popular_name(students)
+print(f'Cамое частое имя среди учеников: {name}')
+
+    
 
 
 # Задание 3
@@ -51,7 +74,9 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
+for number, students in enumerate(school_students, start=1):
+    name = most_popular_name(students)
+    print(f'Cамое частое имя в классе {number}: {name}')
 
 
 # Задание 4
@@ -72,7 +97,18 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
+for classes in school:
+    class_number = school[classes]['class']
+    male = 0
+    female =0
+    for name in classes[students]['first_name']:
+        if is_male[name] == True:
+            male += 1
+        else:
+            female += 1
+    print(f'Класс {class_number}: девочки {female}, мальчики {male}')
+    
+
 
 
 # Задание 5
