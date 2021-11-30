@@ -88,7 +88,7 @@ for number, students in enumerate(school_students, start=1):
 school = [
     {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
     {'class': '2б', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
-    {'class': '2б', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
+    {'class': '2в', 'students': [{'first_name': 'Даша'}, {'first_name': 'Олег'}, {'first_name': 'Маша'}]},
 ]
 is_male = {
     'Олег': True,
@@ -97,19 +97,33 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-for classes in school:
-    class_number = school[classes]['class']
-    male = 0
-    female =0
-    for name in classes[students]['first_name']:
-        if is_male[name] == True:
-            male += 1
-        else:
-            female += 1
-    print(f'Класс {class_number}: девочки {female}, мальчики {male}')
-    
 
-
+def students_count(school, is_male):
+    male_dict = {}
+    school_list = []
+    for classes in school: #распаковка списка словарей(классов)
+        male_dict['class'] = classes['class']
+        #print(male_dict['class'])
+        students = classes['students']
+        male = 0
+        female = 0
+        for student in students:            #распаковка списка словарей(студентов) и подсчет мальчиков и девочек
+            student_name = student['first_name']
+            print(students)
+            if is_male[student_name] == True:
+                male += 1
+            else:
+                female +=1
+            #print(male,female)
+            male_dict['boys'] = male
+            male_dict['girls'] = female
+        #print(male_dict['boys'],male_dict['girls'])
+        school_list.append(male_dict)
+    #print(school_list)
+    return school_list
+list_for_print = students_count(school, is_male)
+#for element in list_for_print:
+#    print(f'Класс {element["class"]}: девочки {element["girls"]}, мальчики {element["boys"]}')
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
