@@ -99,9 +99,9 @@ is_male = {
 }
 
 def students_count(school, is_male):
-    male_dict = {}
     school_list = []
     for classes in school: #распаковка списка словарей(классов)
+        male_dict = {}
         male_dict['class'] = classes['class']
         #print(male_dict['class'])
         students = classes['students']
@@ -109,7 +109,7 @@ def students_count(school, is_male):
         female = 0
         for student in students:            #распаковка списка словарей(студентов) и подсчет мальчиков и девочек
             student_name = student['first_name']
-            print(students)
+            #print(students)
             if is_male[student_name] == True:
                 male += 1
             else:
@@ -119,11 +119,11 @@ def students_count(school, is_male):
             male_dict['girls'] = female
         #print(male_dict['boys'],male_dict['girls'])
         school_list.append(male_dict)
-    #print(school_list)
+        #print(school_list)
     return school_list
 list_for_print = students_count(school, is_male)
-#for element in list_for_print:
-#    print(f'Класс {element["class"]}: девочки {element["girls"]}, мальчики {element["boys"]}')
+for element in list_for_print:
+    print(f'Класс {element["class"]}: девочки {element["girls"]}, мальчики {element["boys"]}')
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -142,4 +142,15 @@ is_male = {
     'Миша': True,
 }
 # ???
-
+students_in_classes = students_count(school, is_male)
+max_boys = students_in_classes[0]
+max_girls = students_in_classes[0]
+for clas in students_in_classes:
+    if clas['boys'] > max_boys['boys']:
+        max_boys = clas
+    if clas['girls'] > max_girls['girls']:
+        max_girls = clas
+print(f'Больше всего маьчиков в классе {max_boys["class"]}')
+print(f'Больше всего девочек в классе {max_girls["class"]}')
+#max_boys = max(students_in_classes['boys'])
+#print(max_boys)
